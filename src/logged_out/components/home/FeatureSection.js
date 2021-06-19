@@ -13,6 +13,13 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import calculateSpacing from "./calculateSpacing";
 import FeatureCard from "./FeatureCard";
 
+
+
+import { makeStyles } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { FixedSizeList } from 'react-window';
+
 const iconSize = 30;
 
 const features = [
@@ -98,6 +105,28 @@ const features = [
     smDelay: "0"
   }
 ];
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function FeatureSection(props) {
   const { width } = props;
