@@ -17,7 +17,6 @@ import ZoomImage from "../../../shared/components/ZoomImage";
 
 
 
-import BaminFontTtf from '../../../font/BMHANNAPro.ttf';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -25,6 +24,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
+import { fontFamily } from "@material-ui/system";
 
 
 
@@ -118,7 +118,7 @@ const styles = (theme) => ({
     margin: theme.spacing(1),
   },
   waveBorder: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(1),
   },
 });
 

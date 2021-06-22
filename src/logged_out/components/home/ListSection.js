@@ -9,11 +9,23 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 
+
+import CardSection from './CardSection';
+
 import Pagination from '@material-ui/lab/Pagination';
 
 import axios from 'axios';
 import { Fragment } from 'react';
 
+
+//캠핑 리스트 목록 컴포넌트
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,30 +34,28 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
 }));
+// 리스트 스타일 
 
-const useStylesPage = makeStyles((theme) => ({
+const useStylesPageButton = makeStyles((theme) => ({
   root: {
     '& > *': {
       marginTop: theme.spacing(2),
     },
+    
   },
 }));
 
 
 
 
-export default function SimpleList() {
+export default function ListSection() {
   const classes = useStyles();
-  const classesPage = useStylesPage();
+  const classesPage = useStylesPageButton();
 
   const [totalCnt, setTotalCnt] =useState(0);
 
-
-  useEffect(()=>{
-    test();
-    
-  },[]);
-
+  const [datas,setDatas] = useState();
+  
   const getCampingList = useCallback(async (page) => {
     const datas = {};
     datas['pageNumber'] = page;
@@ -53,11 +63,27 @@ export default function SimpleList() {
     datas['showingContentNum'] = 5;
     console.log(datas);
     const res =await axios.post("http://localhost:3000/campingInfo/campInfoList",  datas)
-    console.log(res);
-  }, []);
+    // 지역 설정한 api로바꿔야 한다.
 
-  const test = async () => {
+    console.log(res.data.data);
+  
+   
+    setDatas(res.data.data);
+    
+  }, []);
+  
+  useEffect(()=>{
+    getTotalCount();
+    getCampingList(1);
+    
+  },[getCampingList]);
+
+  
+
+
+  const getTotalCount = async () => {
     const res =await axios.post("http://localhost:3000/campingInfo/campSpotAllcount")
+    
     console.log(res);
     setTotalCnt(res.data.data.totalRow);
   }
@@ -65,20 +91,7 @@ export default function SimpleList() {
   return (
     <Fragment>
       <div className={classes.root}>
-        <List component="nav" aria-label="main mailbox folders">
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem>
-        </List>
+       {datas && <CardSection items={datas} ></CardSection>}
       </div>
 
       <div className={classesPage.root}>
