@@ -48,58 +48,28 @@ const useStylesPageButton = makeStyles((theme) => ({
 
 
 
-export default function ListSection() {
+export default function ListSection({datas, totalCnt, getCampingList}) {
   const classes = useStyles();
   const classesPage = useStylesPageButton();
 
-  const [totalCnt, setTotalCnt] =useState(0);
-
-  const [datas,setDatas] = useState();
-  
-  const getCampingList = useCallback(async (page) => {
-    const datas = {};
-    datas['pageNumber'] = page;
-    datas['visiblePages'] = 5;
-    datas['showingContentNum'] = 5;
-    console.log(datas);
-    const res =await axios.post("http://localhost:3000/campingInfo/campInfoList",  datas)
-    // 지역 설정한 api로바꿔야 한다.
-
-    console.log(res.data.data);
-  
-   
-    setDatas(res.data.data);
-    
-  }, []);
-  
-  useEffect(()=>{
-    getTotalCount();
-    getCampingList(1);
-    
-  },[getCampingList]);
-
-  
-
-
-  const getTotalCount = async () => {
-    const res =await axios.post("http://localhost:3000/campingInfo/campSpotAllcount")
-    
-    console.log(res);
-    setTotalCnt(res.data.data.totalRow);
-  }
-
+  console.log(datas);
   return (
     <Fragment>
       <div className={classes.root}>
-       {datas && <CardSection items={datas} ></CardSection>}
+       {datas && 
+        <CardSection 
+          items={datas}
+        >
+        </CardSection>}
       </div>
 
       <div className={classesPage.root}>
-      <Pagination count={totalCnt} color="primary" onChange={
-        (obj, page) => {
-          getCampingList(page);
-        }
-      } />
+        <Pagination count={totalCnt} color="primary" onChange={
+          (obj, page) => {
+            getCampingList(page);
+            // 마커 초기화
+          }
+        } />
       </div>
     </Fragment>
    

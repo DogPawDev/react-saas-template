@@ -1,10 +1,18 @@
 /*global kakao*/
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-const KaKaoMap=()=>{
+const KaKaoMap=({datas})=>{
+  //console.log(datas);
+
+  const [markers,setMarkers] = useState([]);
+
+  setMarkers([])
   useEffect(()=>{
+
+
+    
     var container = document.getElementById('map');
     var options = {
       center: new kakao.maps.LatLng(37.365264512305174, 127.10676860117488),
@@ -13,36 +21,13 @@ const KaKaoMap=()=>{
     };
 
 
-    var markers = [];
+    }, [markers])
+
+
+
+
+
     
-    var ps;
-
-    
-    var imageSize = new kakao.maps.Size(35, 35); 
-    var imageSrc = "/static/img/map/marker/map_marker_red_64.png";
-    var myPositionImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-
-    var map = new kakao.maps.Map(container, options);
-
-  // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
-
-
-
-
-//marker img
-var imageSize = new kakao.maps.Size(35, 35); 
-var imageSrc = "/static/img/map/marker/map_marker_red_64.png";
-var myPositionImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-
-
-
-
-
-    }, [])
-
-
 
     return (
         <div >
