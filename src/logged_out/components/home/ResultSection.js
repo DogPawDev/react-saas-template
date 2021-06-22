@@ -38,9 +38,9 @@ export default function ResultSection() {
   const getTotalCount = async () => {
     const res =await axios.post("http://localhost:3000/campingInfo/campSpotAllcount")
     
-     console.log(res);
+    console.log(res);
     setTotalCnt(res.data.data.totalRow);
-  } 
+  }
 
   useEffect(()=>{
     getTotalCount();
