@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ResultSection() {
   const classes = useStyles();
 
-  const [datas, setDatas] = useState({});
+  const [datas, setDatas] = useState();
   const [totalCnt, setTotalCnt] = useState(0);
 
   const getCampingList = useCallback(async (page) => {
@@ -54,7 +54,6 @@ export default function ResultSection() {
       {datas && <div className={classes.root}>
         <Grid container spacing={1}>
           <Grid item xs={6}>
-         { console.log(datas)}
           <ListSection 
             datas={datas}
             totalCnt={totalCnt}

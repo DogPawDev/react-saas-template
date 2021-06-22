@@ -67,7 +67,6 @@ export default function ListSection({datas, totalCnt, getCampingList}) {
         <Pagination count={totalCnt} color="primary" onChange={
           (obj, page) => {
             getCampingList(page);
-            // 마커 초기화
           }
         } />
       </div>

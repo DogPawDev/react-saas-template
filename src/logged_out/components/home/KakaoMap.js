@@ -6,9 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const KaKaoMap=({datas})=>{
   //console.log(datas);
 
-  const [markers,setMarkers] = useState([]);
+  const [markers,setMarkers] = useState();
 
-  setMarkers([])
   useEffect(()=>{
 
 
@@ -19,15 +18,9 @@ const KaKaoMap=({datas})=>{
       level: 15 , //지도의 레벨(확대, 축소 정도)
       maxLevel: 13
     };
+    var map = new kakao.maps.Map(container, options);
 
-
-    }, [markers])
-
-
-
-
-
-    
+    }, [])
 
     return (
         <div >
