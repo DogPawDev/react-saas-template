@@ -124,10 +124,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
-
-
-
 function FeatureSection(props) {
   const { width } = props;
   return (

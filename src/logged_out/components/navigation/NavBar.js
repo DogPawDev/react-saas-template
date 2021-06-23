@@ -77,7 +77,7 @@ function NavBar(props) {
               display="inline"
               color="primary"
             >
-              Wa
+              Camping
             </Typography>
             <Typography
               variant="h4"
@@ -85,19 +85,11 @@ function NavBar(props) {
               display="inline"
               color="secondary"
             >
-              Ver
+              Info
             </Typography>
           </div>
           <div>
-            <Hidden mdUp>
-              <IconButton
-                className={classes.menuButton}
-                onClick={handleMobileDrawerOpen}
-                aria-label="Open Navigation"
-              >
-                <MenuIcon color="primary" />
-              </IconButton>
-            </Hidden>
+            
             <Hidden smDown>
               {menuItems.map(element => {
                 if (element.link) {
@@ -134,6 +126,8 @@ function NavBar(props) {
           </div>
         </Toolbar>
       </AppBar>
+
+
       <NavigationDrawer
         menuItems={menuItems}
         anchor="right"
@@ -144,7 +138,7 @@ function NavBar(props) {
     </div>
   );
 }
-
+// prop의 타입을 체크
 NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
   handleMobileDrawerOpen: PropTypes.func,

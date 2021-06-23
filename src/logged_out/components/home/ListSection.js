@@ -1,26 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import HeadSection from "./HeadSection";
-
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-
-
 import CardSection from './CardSection';
-
 import Pagination from '@material-ui/lab/Pagination';
-
-import axios from 'axios';
 import { Fragment } from 'react';
 
-
-//캠핑 리스트 목록 컴포넌트
-
-
+//컴포넌트 CSS
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -29,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
+// 페이징 버튼 CSS
 const useStylesPageButton = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -39,9 +23,6 @@ const useStylesPageButton = makeStyles((theme) => ({
   },
 }));
 
-
-
-
 export default function ListSection({datas, totalCnt, getCampingList}) {
   const classes = useStyles();
   const classesPage = useStylesPageButton();
@@ -49,8 +30,6 @@ export default function ListSection({datas, totalCnt, getCampingList}) {
   console.log(datas);
   return (
     <Fragment>
-
-      
       <div className={classes.root}>
        {datas && 
         <CardSection 
