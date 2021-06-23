@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,8 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
 import SvgIcon from '@material-ui/core/SvgIcon';
-
+import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import featureSection from './FeatureSection';
 
 
 
@@ -41,18 +43,18 @@ const useStyleChip = makeStyles({
   },
 });
 
-export default function CardSection({items}) {
+export default function CardSection({items, history}) {
   const classes = useStyles();
   const classes2= useStyleChip();
 
   
 
-  
 
 
 
 //주소 아이콘 뱃지 컴포넌트 설정
 function HomeIcon(props) {
+  // 여긴 왜 또 HomeIcon이야
   return (
     <SvgIcon {...props}>
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -65,6 +67,8 @@ function HomeIcon(props) {
   return (
     <Grid container spacing={2}>
       {items.map((list,idx)=>(
+          //저거 감싸는게 어디야?여기  <Grid > 이부분이 <div> 같은느김
+          
         <Grid item xs={4} data-aos="zoom-in-up">
           <Card className={classes.root}>
               <CardActionArea>     
@@ -96,7 +100,9 @@ function HomeIcon(props) {
 
               </CardActionArea>
           </Card>
-       </Grid>))}
+       </Grid>))
+       
+       }
     </Grid>
   );
 }

@@ -190,9 +190,7 @@ function HeadSection(props) {
     <Fragment>
       <div className={classNames("lg-p-top", classes.wrapper)}>
         <div className={classNames("container-fluid", classes.container)}>
-        <Typography variant="h3" align="center" className="lg-mg-bottom">
-          Go CamPing~
-        </Typography>
+        
           <Box display="flex" justifyContent="center" className="row">
 
 
@@ -204,7 +202,9 @@ function HeadSection(props) {
             >
               <div className={classNames(classes.containerFix, "container")}>
                 <Box justifyContent="space-between" className="row">
-                  캠핑장 목록
+                 <Typography variant="h5" align="center">
+         캠핑 지역 선택
+        </Typography>
                 <FormControl className={classes.formControl}>
                  <InputLabel id="demo-simple-select-label">도/시</InputLabel>
             <Select
@@ -248,7 +248,16 @@ function HeadSection(props) {
           handleOnClick(dodo, sisi);  
         }}
       >탐색
-      </Button>{
+      </Button>
+      <Button
+        variant="contained"
+        color="inherit"
+        className={classes.button} onClick={() => {
+          window.location.reload()
+        }}
+      >초기화
+      </Button>
+      {
           isFlag === false &&<Typography variant="h5">
           해당 지역 근처에 캠핑장이 없습니다
         </Typography>

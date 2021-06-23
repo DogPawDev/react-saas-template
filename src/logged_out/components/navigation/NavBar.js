@@ -52,7 +52,10 @@ function NavBar(props) {
     selectedTab
   } = props;
 
-
+  useEffect(() => {
+    loginChek();
+  }, []);
+  
   const loginChek = async ()=>{
     
 
@@ -100,6 +103,7 @@ function NavBar(props) {
               Info
             </Typography>
           </div>
+          
           <div>
             
             <Hidden smDown>

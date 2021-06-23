@@ -36,12 +36,7 @@ function Main(props) {
     setSelectedTab("Home");
   }, [setSelectedTab]);
 
-  const selectBlog = useCallback(() => {
-    smoothScrollTop();
-    document.title = "WaVer - Blog";
-    setSelectedTab("Blog");
-  }, [setSelectedTab]);
-
+ 
   const openLoginDialog = useCallback(() => {
     setDialogOpen("login");
     setIsMobileDrawerOpen(false);
@@ -130,7 +125,7 @@ function Main(props) {
       <Routing
         blogPosts={blogPosts}
         selectHome={selectHome}
-        selectBlog={selectBlog}
+      
       />
       <Footer />
     </div>

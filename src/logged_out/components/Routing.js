@@ -2,8 +2,11 @@ import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import PropsRoute from "../../shared/components/PropsRoute";
+
+
 import Home from "./home/Home";
 import Blog from "./blog/Blog";
+import test from "./blog/test";
 import BlogPost from "./blog/BlogPost";
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
@@ -34,6 +37,7 @@ function Routing(props) {
         blogPosts={blogPosts}
       />
       <PropsRoute path="/" component={Home} selectHome={selectHome} />
+      <PropsRoute path="/test" component={test} />
     </Switch>
   );
 }
