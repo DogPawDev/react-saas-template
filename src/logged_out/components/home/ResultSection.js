@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import ListSection from './ListSection'
 import { makeStyles } from '@material-ui/core/styles';
 import KaKaoMap from './KakaoMap';
+import HeadSection from "./HeadSection";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,37 +22,67 @@ export default function ResultSection() {
 
   const [datas, setDatas] = useState();
   const [totalCnt, setTotalCnt] = useState(0);
+  const [CityString, setCityString] = useState(''); 
 
-  const getCampingList = useCallback(async (page) => {
+  const [DosiString, setDosiString] = useState('');
+  
+  const [isFlag,setFlag] = useState(true);
+
+
+  const getCampingList = useCallback(async (page, dodo, sisi) => {
     const data = {};
     data['pageNumber'] = page;
-    data['visiblePages'] = 5;
-    data['showingContentNum'] = 5;
+    data['visiblePages'] = 6;
+    data['showingContentNum'] = 6;
+    data['doNm'] = dodo;
+    data['sigunguNm'] = sisi;
+    
     console.log(data);
     const res =await axios.post("http://localhost:3000/campingInfo/campInfoList",  data)
     // 지역 설정한 api로바꿔야 한다.
 
-    console.log(res.data.data);
+    console.log(Array.isArray(res.data.data) && res.data.data !== 0);
     setDatas(res.data.data);
+    
   }, []);
 
-  const getTotalCount = async () => {
-    const res =await axios.post("http://localhost:3000/campingInfo/campSpotAllcount")
-    
+  const getTotalCount = async (dodo,sisi) => {
+    const data={};
+    data['doNm'] = dodo;
+    data['sigunguNm'] = sisi;
+    console.log(data);
+    const res =await axios.post("http://localhost:3000/campingInfo/campSpotAllcount", data)
+    if(res.data.data.totalRow >= 1 ){
+      setFlag(true);
+    }else{
+      setFlag(false);
+    }
     console.log(res);
     setTotalCnt(res.data.data.totalRow);
   }
 
   useEffect(()=>{
-    getTotalCount();
-    getCampingList(1);
+   
     
   },[getCampingList]);
 
+  const handleOnClick = useCallback((dodo,sisi)=> {
+    getCampingList(1, dodo, sisi); 
+    console.log(dodo,sisi);
+    setDosiString(sisi);
+    setCityString(dodo);
+    getTotalCount(dodo,sisi);
+   
+   },[getCampingList])
+ 
   return (
    
     <Fragment>
-      {datas && <div className={classes.root}>
+      
+      <HeadSection handleOnClick={handleOnClick} isFlag={isFlag}  />
+
+      
+      {DosiString  && totalCnt !== 0 && <div className={classes.root}>
         <Grid container spacing={1}>
           <Grid item xs={6}>
           <ListSection 
@@ -62,11 +93,11 @@ export default function ResultSection() {
           
           </Grid>
           
-          <Grid item xs={6}>
+          {DosiString && <Grid item xs={6}>
             <KaKaoMap
               datas={datas}
             />
-          </Grid>
+          </Grid>}
       </Grid>
     </div>
     }

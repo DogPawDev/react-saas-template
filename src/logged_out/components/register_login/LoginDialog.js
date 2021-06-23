@@ -188,6 +188,9 @@ function LoginDialog(props) {
             >
               Forgot Password?
             </Typography>
+            <div>
+            <a href="http://localhost:3000/login/oauth"><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" /> </a>
+            </div>
           </Fragment>
         }
       />

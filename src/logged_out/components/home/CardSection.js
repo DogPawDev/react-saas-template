@@ -59,7 +59,7 @@ console.log(items);
     <Grid container spacing={2}>
       {
     items.map((list,idx)=>(
-      <Grid item xs={4}>
+      <Grid item xs={4} data-aos="zoom-in-up">
       <Card className={classes.root}>
       <CardActionArea>
       
