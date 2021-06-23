@@ -76,7 +76,7 @@ console.log(items);
           <Typography gutterBottom variant="h5" component="h2">
             {list.facltNm}
           </Typography>
-          <div className={classes2.root}>
+          <div className={classes2.root} >
           <Chip label={"테마 : "+list.induty} />
            <Chip label={"운영 상태 : "+list.manageSttus} />
            <Chip label={"운영시즌 : "+list.operPdCl} />
