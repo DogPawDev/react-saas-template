@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-
+import axios from 'axios';
 
 
 
@@ -24,6 +24,10 @@ const useStyles = makeStyles({
     textAlign: 'center',
   },
 });
+
+
+
+
 
 // 캠핑 정보 
 const useStyleChip = makeStyles({
@@ -40,6 +44,10 @@ const useStyleChip = makeStyles({
 export default function CardSection({items}) {
   const classes = useStyles();
   const classes2= useStyleChip();
+
+  
+
+  
 
 
 

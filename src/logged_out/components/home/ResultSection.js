@@ -34,8 +34,8 @@ export default function ResultSection() {
     data['pageNumber'] = page;
     data['visiblePages'] = 6;
     data['showingContentNum'] = 6;
-    data['doNm'] = dodo;
-    data['sigunguNm'] = sisi;
+    data['doNm'] = dodo ? dodo : CityString;
+    data['sigunguNm'] = sisi ? sisi : DosiString;
     
     console.log(data);
     const res =await axios.post("http://localhost:3000/campingInfo/campInfoList",  data)
@@ -44,12 +44,13 @@ export default function ResultSection() {
     console.log(Array.isArray(res.data.data) && res.data.data !== 0);
     setDatas(res.data.data);
     
-  }, []);
+  }, [CityString, DosiString]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getTotalCount = async (dodo,sisi) => {
     const data={};
-    data['doNm'] = dodo;
-    data['sigunguNm'] = sisi;
+    data['doNm'] = dodo ? dodo : CityString;
+    data['sigunguNm'] = sisi ? sisi : DosiString;
     console.log(data);
     const res =await axios.post("http://localhost:3000/campingInfo/campSpotAllcount", data)
     if(res.data.data.totalRow >= 1 ){
@@ -61,19 +62,16 @@ export default function ResultSection() {
     setTotalCnt(res.data.data.totalRow);
   }
 
-  useEffect(()=>{
-   
-    
-  },[getCampingList]);
-
   const handleOnClick = useCallback((dodo,sisi)=> {
     getCampingList(1, dodo, sisi); 
+
+
     console.log(dodo,sisi);
     setDosiString(sisi);
     setCityString(dodo);
     getTotalCount(dodo,sisi);
    
-   },[getCampingList])
+   },[getCampingList, getTotalCount])
  
   return (
    
@@ -87,7 +85,7 @@ export default function ResultSection() {
           <Grid item xs={6}>
           <ListSection 
             datas={datas}
-            totalCnt={totalCnt}
+            totalCnt={Math.round(totalCnt/6)}
             getCampingList={getCampingList}
           />
           

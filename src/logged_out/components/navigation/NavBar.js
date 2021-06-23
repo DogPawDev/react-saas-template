@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -16,7 +16,7 @@ import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
-
+import axios from 'axios';
 const styles = theme => ({
   appBar: {
     boxShadow: theme.shadows[6],
@@ -39,6 +39,8 @@ const styles = theme => ({
   }
 });
 
+
+
 function NavBar(props) {
   const {
     classes,
@@ -49,6 +51,16 @@ function NavBar(props) {
     mobileDrawerOpen,
     selectedTab
   } = props;
+
+
+  const loginChek = async ()=>{
+    
+
+    const res = await axios.post("http://localhost:3000/login/oauth")
+    console.log(res);
+  }
+
+
   const menuItems = [
     {
       link: "/",

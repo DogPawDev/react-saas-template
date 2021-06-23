@@ -21,7 +21,7 @@ import Select from '@material-ui/core/Select';
 
 
 
-
+// 컴포넌트 CSS
 const styles = (theme) => ({
   extraLargeButtonLabel: {
     fontSize: theme.typography.body1.fontSize,
@@ -111,7 +111,7 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-  const { classes, theme, width, handleOnClick ,isFlag} = props;
+  const { classes, theme, handleOnClick ,isFlag} = props;
   const [dodo, setDo] = useState('');
   const [sisi, setSi] = useState('');
   const [isSelect,setIsSelect] = useState(false);
@@ -204,8 +204,7 @@ function HeadSection(props) {
             >
               <div className={classNames(classes.containerFix, "container")}>
                 <Box justifyContent="space-between" className="row">
-캠핑장 목록
-
+                  캠핑장 목록
                 <FormControl className={classes.formControl}>
                  <InputLabel id="demo-simple-select-label">도/시</InputLabel>
             <Select
@@ -246,15 +245,13 @@ function HeadSection(props) {
         variant="contained"
         color="secondary"
         className={classes.button} onClick={() => {
-          handleOnClick(dodo, sisi);
-          
+          handleOnClick(dodo, sisi);  
         }}
       >탐색
       </Button>{
           isFlag === false &&<Typography variant="h5">
           해당 지역 근처에 캠핑장이 없습니다
         </Typography>
-
       }
       
         </Box>
