@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { withRouter } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
 import {
   TextField,
   Button,
@@ -17,6 +18,7 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 
 const styles = (theme) => ({
+  
   forgotPassword: {
     marginTop: theme.spacing(2),
     color: theme.palette.primary.main,
@@ -38,6 +40,9 @@ const styles = (theme) => ({
 });
 
 function LoginDialog(props) {
+
+
+
   const {
     setStatus,
     history,
@@ -50,6 +55,9 @@ function LoginDialog(props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const loginEmail = useRef();
   const loginPassword = useRef();
+
+  
+
 
   const login = useCallback(() => {
     setIsLoading(true);
@@ -83,6 +91,7 @@ function LoginDialog(props) {
         }}
         hideBackdrop
         headline="Login"
+        
         content={
           <Fragment>
             <TextField
@@ -140,18 +149,7 @@ function LoginDialog(props) {
               control={<Checkbox color="primary" />}
               label={<Typography variant="body1">Remember me</Typography>}
             />
-            {status === "verificationEmailSend" ? (
-              <HighlightedInformation>
-                We have send instructions on how to reset your password to your
-                email address
-              </HighlightedInformation>
-            ) : (
-              <HighlightedInformation>
-                Email is: <b>test@web.com</b>
-                <br />
-                Password is: <b>HaRzwc</b>
-              </HighlightedInformation>
-            )}
+           
           </Fragment>
         }
         actions={
@@ -190,10 +188,10 @@ function LoginDialog(props) {
               Forgot Password?
             </Typography>
 
-           
-            <div>
-            <a href="http://localhost:3000/login/oauth"><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" /> </a>
-            </div>
+            
+            
+              <a href=""><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" /> </a>
+
           </Fragment>
         }
       />

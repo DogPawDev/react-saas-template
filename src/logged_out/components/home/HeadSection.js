@@ -249,14 +249,7 @@ function HeadSection(props) {
         }}
       >탐색
       </Button>
-      <Button
-        variant="contained"
-        color="inherit"
-        className={classes.button} onClick={() => {
-          window.location.reload()
-        }}
-      >초기화
-      </Button>
+      
       {
           isFlag === false &&<Typography variant="h5">
           해당 지역 근처에 캠핑장이 없습니다
