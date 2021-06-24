@@ -71,12 +71,12 @@ function NavBar(props) {
       icon: <HomeIcon className="text-white" />
     },
     {
-      name: "Register",
+      name: "회원가입",
       onClick: openRegisterDialog,
       icon: <HowToRegIcon className="text-white" />
     },
     {
-      name: "Login",
+      name: "로그인",
       onClick: openLoginDialog,
       icon: <LockOpenIcon className="text-white" />
     }

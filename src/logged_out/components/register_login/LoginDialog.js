@@ -18,7 +18,6 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 
 const styles = (theme) => ({
-  
   forgotPassword: {
     marginTop: theme.spacing(2),
     color: theme.palette.primary.main,
@@ -62,22 +61,8 @@ function LoginDialog(props) {
   const login = useCallback(() => {
     setIsLoading(true);
     setStatus(null);
-    if (loginEmail.current.value !== "test@web.com") {
-      setTimeout(() => {
-        setStatus("invalidEmail");
-        setIsLoading(false);
-      }, 1500);
-    } else if (loginPassword.current.value !== "HaRzwc") {
-      setTimeout(() => {
-        setStatus("invalidPassword");
-        setIsLoading(false);
-      }, 1500);
-    } else {
-      setTimeout(() => {
-        history.push("/c/dashboard");
-      }, 150);
-    }
-  }, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
+    
+  }, [setIsLoading,  setStatus]);
 
   return (
     <Fragment>
@@ -90,8 +75,7 @@ function LoginDialog(props) {
           login();
         }}
         hideBackdrop
-        headline="Login"
-        
+        headline="로그인"
         content={
           <Fragment>
             <TextField
@@ -147,7 +131,7 @@ function LoginDialog(props) {
             <FormControlLabel
               className={classes.formControlLabel}
               control={<Checkbox color="primary" />}
-              label={<Typography variant="body1">Remember me</Typography>}
+              label={<Typography variant="body1">자동 로그인</Typography>}
             />
            
           </Fragment>
@@ -162,9 +146,23 @@ function LoginDialog(props) {
               disabled={isLoading}
               size="large"
             >
-              Login
+              로그인
               {isLoading && <ButtonCircularProgress />}
             </Button>
+            <Typography><br></br></Typography>
+
+            <Button
+             
+             fullWidth
+             variant="contained"
+             color="primary"
+            
+             size="large"
+           >
+           
+             <a href="http://localhost:3000/login/oauth">카카오</a>
+       
+           </Button>
             <Typography
               align="center"
               className={classNames(
@@ -185,13 +183,12 @@ function LoginDialog(props) {
                 }
               }}
             >
-              Forgot Password?
+             비밀번호 찾기
             </Typography>
 
-            
-            
-              <a href=""><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" /> </a>
-
+           
+           
+              
           </Fragment>
         }
       />

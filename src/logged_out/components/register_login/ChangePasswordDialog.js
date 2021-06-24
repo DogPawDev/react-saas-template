@@ -52,8 +52,7 @@ function ChangePassword(props) {
       >
         <DialogContent className={classes.dialogContent}>
           <Typography paragraph>
-            Enter your email address below and we will send you instructions on
-            how to reset your password.
+            등록한 e-mail로 비밀번호 변경 링크를 보내드립니다.
           </Typography>
           <TextField
             variant="outlined"
@@ -68,7 +67,7 @@ function ChangePassword(props) {
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
           <Button onClick={onClose} disabled={isLoading}>
-            Cancel
+            취소
           </Button>
           <Button
             type="submit"
@@ -76,7 +75,7 @@ function ChangePassword(props) {
             color="secondary"
             disabled={isLoading}
           >
-            Reset password
+            비밀번호 초기화
             {isLoading && <ButtonCircularProgress />}
           </Button>
         </DialogActions>

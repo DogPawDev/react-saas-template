@@ -70,7 +70,7 @@ function RegisterDialog(props) {
       loading={isLoading}
       onClose={onClose}
       open
-      headline="Register"
+      headline="회원가입"
       onFormSubmit={(e) => {
         e.preventDefault();
         register();
