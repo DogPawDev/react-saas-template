@@ -10,7 +10,6 @@ function DialogSelector(props) {
   const {
     dialogOpen,
     openTermsDialog,
-    openRegisterDialog,
     openLoginDialog,
     openChangePasswordDialog,
     onClose,
@@ -53,17 +52,7 @@ function DialogSelector(props) {
         );
       default:
     }
-  }, [
-    dialogOpen,
-    openChangePasswordDialog,
-    openLoginDialog,
-    openRegisterDialog,
-    _onClose,
-    loginStatus,
-    registerStatus,
-    setLoginStatus,
-    setRegisterStatus,
-  ]);
+  }, [dialogOpen, _onClose, openTermsDialog, registerStatus, loginStatus, openChangePasswordDialog, openLoginDialog]);
 
   return (
     <Fragment>
@@ -72,13 +61,5 @@ function DialogSelector(props) {
     </Fragment>
   );
 }
-
-DialogSelector.propTypes = {
-  dialogOpen: PropTypes.string,
-  openLoginDialog: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-  openRegisterDialog: PropTypes.func.isRequired,
-  openChangePasswordDialog: PropTypes.func.isRequired,
-};
 
 export default DialogSelector;

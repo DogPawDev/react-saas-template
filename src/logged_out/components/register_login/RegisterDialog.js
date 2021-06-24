@@ -30,7 +30,7 @@ const styles = (theme) => ({
     },
   },
 });
-
+// 회원 등록 컴포넌트
 function RegisterDialog(props) {
   const { setStatus, theme, onClose, openTermsDialog, status, classes } = props;
   const [isLoading, setIsLoading] = useState(false);

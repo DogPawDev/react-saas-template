@@ -25,49 +25,46 @@ const useStylesPageButton = makeStyles((theme) => ({
   },
 }));
 
+
+// 캠핑장을  담당하는  컴포넌트입니다.
+
+
 export default function ListSection({datas, totalCnt, getCampingList}) {
   const classes = useStyles();
   const classesPage = useStylesPageButton();
 
-  console.log(datas);
+
   return (
     <Fragment>
+
+      {/* 캠핑장 목록 */}
       <div className={classes.root}>
-       {datas && 
-        <CardSection 
-          items={datas}
-        >
+        {datas && <CardSection items={datas}>
         </CardSection>}
       </div>
 
+      {/* 페이지 버튼 */}
       <div className={classesPage.root}>
         <Grid container >
-          <Grid item xs={6}>
-          <Pagination count={totalCnt} color="primary" onChange={
-          (obj, page) => {
-            getCampingList(page);
-          }
-        } />
-          </Grid>
-          <Grid item xs={6}>
-          <Button
-        variant="contained"
-        color="inherit"
-        className={classes.button} onClick={() => {
-          window.location.reload()
-        }}
-      >초기화
-      </Button>
-          </Grid>
+            <Grid item xs={6}>
+                  <Pagination count={totalCnt} color="primary" onChange={(obj, page) => {
+                    // 선택된 페이지 버튼 (number) 을 콜백함수로 넘겨줍니다.
+                    getCampingList(page);
+                  }}/>
+              </Grid>
+                  <Grid item xs={6}>
+                    {/* 값을 초기화 하는 버튼입니다. */}
+                    <Button
+                      variant="contained"
+                      color="inherit"
+                      className={classes.button} onClick={() => {
+                        window.location.reload()}}
+                      >
+                        초기화
+                    </Button>
+              </Grid>
         </Grid>
-       
-        
       </div>
-
-      
     </Fragment>
-   
-
-
   );
 }

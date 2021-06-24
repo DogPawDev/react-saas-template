@@ -10,15 +10,12 @@ import {
   withWidth,
 } from "@material-ui/core";
 import WaveBorder from "../../../shared/components/WaveBorder";
-
-
-
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
+// 검색 버튼 컴포넌트
 
 
 // 컴포넌트 CSS
@@ -112,9 +109,14 @@ const styles = (theme) => ({
 
 function HeadSection(props) {
   const { classes, theme, handleOnClick ,isFlag} = props;
+
   const [dodo, setDo] = useState('');
   const [sisi, setSi] = useState('');
+
   const [isSelect,setIsSelect] = useState(false);
+
+
+  // 선택된 지역을 변수에 저장합니다.
   const handleChangeDodo = (event) => {
     setIsSelect(true);
     setDo(event.target.value);
@@ -123,8 +125,8 @@ function HeadSection(props) {
     setSi(event.target.value);
   };
 
-
-  const City2=[
+//드롭다운 버튼에 들어가는 데이터 입니다. 
+  const City=[
     {name:"서울시",
             list:["강남구","강동구","강북구","강서구","관악구",
               "광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구",
@@ -181,7 +183,10 @@ function HeadSection(props) {
           }         
   ];
 
-  const City3 = City2.filter((data, index) => {
+
+
+  //도/시가 선택될 경우 선택된 도시에 속한 시/동/군을 불러오기위한 임시 변수
+  const CityTemp = City.filter((data, index) => {
     return data.name === dodo
   });
 
@@ -192,9 +197,6 @@ function HeadSection(props) {
         <div className={classNames("container-fluid", classes.container)}>
         
           <Box display="flex" justifyContent="center" className="row">
-
-
-
             <Card
               className={classes.card}
               data-aos-delay="200"
@@ -202,81 +204,82 @@ function HeadSection(props) {
             >
               <div className={classNames(classes.containerFix, "container")}>
                 <Box justifyContent="space-between" className="row">
-                 <Typography variant="h5" align="center">
-         캠핑 지역 선택
-        </Typography>
-                <FormControl className={classes.formControl}>
-                 <InputLabel id="demo-simple-select-label">도/시</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={dodo}
-              onChange={handleChangeDodo}
-            >
-            {City2.map( (data, idx)=> (
-              <MenuItem value={data.name}>{data.name}</MenuItem>
-            ))}
-          {/* <MenuItem value={"서울시"}>서울시</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem> */}
-        </Select>
-      </FormControl>
+                        
+                    <Typography variant="h5" align="center">
+                      캠핑 지역 선택
+                    </Typography>
+
+                  {/* 드롭다운 -  시/도 */}
+                  <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-label">도/시</InputLabel>
+
+                    {/* MenuItem 컴포넌에서 선택된 값이 dodo에 저장 됩니다. */}
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={dodo}
+                      onChange={handleChangeDodo}
+                    >
+                      {City.map( (data, idx)=> (
+                        <MenuItem value={data.name}>{data.name}</MenuItem>
+                      ))}
+    
+                    </Select>
+                  </FormControl>
 
 
-      <FormControl className={classes.formControl}>
-                 <InputLabel id="demo-simple-select-label">시/군/구</InputLabel>
-            { isSelect && <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={sisi}
-              onChange={handleChangeSisi}
-            >
+                  {/* 드롭다운 - 시/군/구 */}
+                  <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-label">시/군/구</InputLabel>
+                      {/* 시/도가 선택되면 해당 컴포넌트가 생성됩니다. */}
+                      { isSelect && <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={sisi}
+                          onChange={handleChangeSisi}
+                        >
 
-            {
-              City3[0].list.map( (data, idx)=> (
-               <MenuItem value={data}>{data}</MenuItem>
-            ))
-            }
-        </Select>}
-      </FormControl>
+                        {
+                          CityTemp[0].list.map( (data, idx)=> (
+                          <MenuItem value={data}>{data}</MenuItem>
+                        ))
+                        }
+                    </Select>}
+                  </FormControl>
 
 
-     <Button
-        variant="contained"
-        color="secondary"
-        className={classes.button} onClick={() => {
-          handleOnClick(dodo, sisi);  
-        }}
-      >탐색
-      </Button>
-      
-      {
-          isFlag === false &&<Typography variant="h5">
-          해당 지역 근처에 캠핑장이 없습니다
-        </Typography>
-      }
-      
-        </Box>
+                  <Button
+                      variant="contained"
+                      color="secondary"
+                      className={classes.button} onClick={() => {
+                        handleOnClick(dodo, sisi);  
+                      }}
+                      >탐색
+                  </Button>
+        
+                  {
+                      isFlag === false &&<Typography variant="h5">
+                      해당 지역 근처에 캠핑장이 없습니다
+                    </Typography>
+                  }     
+                </Box>  
               </div>
             </Card>
           </Box>
         </div>
       </div>
+
+      {/* 물결 애니메이션 */}
       <WaveBorder
         upperColor={theme.palette.secondary.main}
         lowerColor="#FFFFFF"
         className={classes.waveBorder}
         animationNegativeDelay={2}
       />
+
     </Fragment>
   );
 }
-
-HeadSection.propTypes = {
-  classes: PropTypes.object,
-  width: PropTypes.string,
-  theme: PropTypes.object,
-};
 
 export default withWidth()(
   withStyles(styles, { withTheme: true })(HeadSection)

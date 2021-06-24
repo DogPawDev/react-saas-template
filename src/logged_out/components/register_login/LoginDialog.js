@@ -1,9 +1,7 @@
 import React, { useState, useCallback, useRef, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import ButtonBase from '@material-ui/core/ButtonBase';
 import { withRouter } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
 import {
   TextField,
   Button,
@@ -13,7 +11,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import FormDialog from "../../../shared/components/FormDialog";
-import HighlightedInformation from "../../../shared/components/HighlightedInformation";
+
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 
@@ -38,13 +36,15 @@ const styles = (theme) => ({
   },
 });
 
+
+// 로그인 창을 담당하는 컴포넌트입니다.
+
 function LoginDialog(props) {
 
 
 
   const {
     setStatus,
-    history,
     classes,
     onClose,
     openChangePasswordDialog,

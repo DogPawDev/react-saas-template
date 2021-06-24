@@ -1,5 +1,5 @@
 import React from 'react';
-import { Fragment } from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,12 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { Route, Link } from 'react-router-dom';
-import axios from 'axios';
-import featureSection from './FeatureSection';
 
-
-
+// CSS
 const useStyles = makeStyles({
   root: {
     maxWidth: '100%',
@@ -28,10 +24,7 @@ const useStyles = makeStyles({
 });
 
 
-
-
-
-// 캠핑 정보 
+// 캠핑 정보를 보여주는 리스트의 태그 CSS
 const useStyleChip = makeStyles({
   root: {
     display: 'flex',
@@ -43,18 +36,13 @@ const useStyleChip = makeStyles({
   },
 });
 
-export default function CardSection({items, history}) {
+export default function CardSection({items}) {
   const classes = useStyles();
   const classes2= useStyleChip();
 
   
-
-
-
-
-//주소 아이콘 뱃지 컴포넌트 설정
+//주소 아이콘 뱃지 컴포넌트 생성
 function HomeIcon(props) {
-  // 여긴 왜 또 HomeIcon이야
   return (
     <SvgIcon {...props}>
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -66,9 +54,8 @@ function HomeIcon(props) {
 
   return (
     <Grid container spacing={2}>
-      {items.map((list,idx)=>(
-          //저거 감싸는게 어디야?여기  <Grid > 이부분이 <div> 같은느김
-          
+      {/* 캠핑장 데이터를 토대로 렌더링합니다. items : 캠핑장 목록 및 정보*/}
+      {items.map((list,idx)=>(  
         <Grid item xs={4} data-aos="zoom-in-up">
           <Card className={classes.root}>
               <CardActionArea>     
@@ -77,9 +64,7 @@ function HomeIcon(props) {
                   image={list.firstImageUrl}
                   title={list.facltNm}
                 />
-              
-
-            
+  
                 <CardContent>
 
                   <Typography gutterBottom variant="h5" component="h2">
@@ -101,7 +86,6 @@ function HomeIcon(props) {
               </CardActionArea>
           </Card>
        </Grid>))
-       
        }
     </Grid>
   );

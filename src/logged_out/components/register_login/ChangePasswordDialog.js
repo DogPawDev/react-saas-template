@@ -22,6 +22,10 @@ const styles = (theme) => ({
   },
 });
 
+
+
+// 비밀번호 변경 컴포넌트 입니다.
+
 function ChangePassword(props) {
   const { onClose, classes, setLoginStatus } = props;
   const [isLoading, setIsLoading] = useState(false);
